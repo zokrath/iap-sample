@@ -22,7 +22,7 @@
 // Our application's global object
 var app = {};
 
-app.nonHostedContentUrl = "http://ge.tt/api/1/files/3JSfJhL2/0/blob?download";
+//app.nonHostedContentUrl = "http://ge.tt/api/1/files/3JSfJhL2/0/blob?download";
 
 //
 // Constructor
@@ -65,7 +65,7 @@ app.initStore = function() {
     store.verbosity = store.DEBUG;
 
     // Enable remote receipt validation
-    store.validator = "https://api.fovea.cc:1982/check-purchase";
+    //store.validator = "https://api.fovea.cc:1982/check-purchase";
 
     // Inform the store of your products
     log('registerProducts');
