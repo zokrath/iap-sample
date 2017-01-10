@@ -56,6 +56,8 @@ app.initStore = function() {
     if (!window.store) {
         log('Store not available');
         return;
+    } else {
+        log("YAY!");
     }
 
     app.platform = device.platform.toLowerCase();
