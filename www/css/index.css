@@ -59,6 +59,10 @@ h1 {
     font-family: monospace;
 }
 
+#refresh-button {
+    font-size: 3em;
+}
+
 .button {
     display:inline-block;
     padding: 5px 20px;
