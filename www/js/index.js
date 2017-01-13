@@ -255,6 +255,7 @@ app.initStore = function() {
         if (el) {
             el.style.display = 'block';
             el.onclick = function(ev) {
+                log("Activating refresh...");
                 store.refresh();
             };
         }
