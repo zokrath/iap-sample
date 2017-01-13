@@ -30,7 +30,7 @@ var app = {};
 //
 
 app.initialize = function() {
-    log('initialize');
+    log('Initialising...');
 
     // Listen to the deviceready event.
     // Make sure the score of 'this' isn't lost.
@@ -46,7 +46,7 @@ app.initialize = function() {
 //
 // will just initialize the Purchase plugin
 app.onDeviceReady = function() {
-    log('onDeviceReady');
+    log('Device is ready...');
     this.initStore();
 };
 
@@ -57,7 +57,7 @@ app.initStore = function() {
         log('Store not available');
         return;
     } else {
-        log("YAY!");
+        log("Connected to store...");
     }
 
     app.platform = device.platform.toLowerCase();
@@ -70,13 +70,20 @@ app.initStore = function() {
     //store.validator = "https://api.fovea.cc:1982/check-purchase";
 
     // Inform the store of your products
-    log('registerProducts');
+    log('Registering products...');
+    /*
     store.register({
         id:    'consumable1', // id without package name!
         alias: 'extra life',
         type:   store.CONSUMABLE
     });
-
+    */
+    store.register({
+        id:    "gold.coin.001.gc1",
+        alias: "Gold Coin (1 Gc)",
+        type:  store.CONSUMABLE
+    });
+/*
     store.register({
         id:    'nonconsumable1', // id without package name!
         alias: 'full version',
@@ -94,7 +101,7 @@ app.initStore = function() {
         alias: 'non-hosted content download',
         type:   store.NON_CONSUMABLE
     });
-
+    
     if(app.platform === "ios"){
         store.register({
             id:    'nonconsumablehosted1', // id without package name!
@@ -102,13 +109,14 @@ app.initStore = function() {
             type:   store.NON_CONSUMABLE
         });
     }
+*/
 
 
     // When any product gets updated, refresh the HTML.
     store.when("product").updated(function (p) {
         app.renderIAP(p);
     });
-
+/*
     store.when("subscription1").approved(function(p) {
         log("verify subscription");
         p.verify();
@@ -128,7 +136,7 @@ app.initStore = function() {
             document.getElementById('subscriber-info').innerHTML = 'You are not subscribed';
         }
     });
-
+*/
     // Log all errors
     store.error(function(error) {
         log('ERROR ' + error.code + ': ' + error.message);
@@ -136,11 +144,11 @@ app.initStore = function() {
 
     // When purchase of an extra life is approved,
     // deliver it... by displaying logs in the console.
-    store.when("extra life").approved(function (order) {
-        log("You got an EXTRA LIFE!");
+    store.when("Gold Coin (1 Gc)").approved(function (order) {
+        log("You purchased a gold coin! (1 Gc)");
         order.finish();
     });
-
+/*
     // When purchase of the full version is approved,
     // show some logs and finish the transaction.
     store.when("full version").approved(function (order) {
@@ -154,11 +162,11 @@ app.initStore = function() {
         document.getElementById("access-full-version-button").style.display =
             product.owned ? "block" : "none";
     });
-
+*/
     /*
      * iOS Apple-hosted content
      */
-
+/*
     // When purchase of the downloadable content is approved,
     // show some logs.
     store.when("hosted content download").approved(function (product) {
@@ -189,11 +197,11 @@ app.initStore = function() {
             displayDownloadedContent(cordova.file.documentsDirectory + productName, displayEl);
         }
     });
-
+*/
     /*
      * Non-hosted (self-hosted) content
      */
-
+/*
     // When purchase of the downloadable content is approved,
     // show some logs.
     store.when("non-hosted content download").approved(function (product) {
@@ -229,7 +237,7 @@ app.initStore = function() {
             displayDownloadedContent(cordova.file.dataDirectory + productName, displayEl);
         }
     });
-
+*/
     // When the store is ready (i.e. all products are loaded and in their "final"
     // state), we hide the "loading" indicator.
     //
@@ -278,7 +286,7 @@ app.initStore = function() {
     //
     // It's fine to do this only at application startup, as it could be
     // pretty expensive.
-    log('refresh');
+    log('Refreshing store...');
     store.refresh();
 };
 
